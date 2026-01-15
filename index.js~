@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+const bug = "neighbor";
+
+function main() {
+  console.log(bug);
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = { bug, main };
