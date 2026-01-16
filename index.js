@@ -1,35 +1,84 @@
 #!/usr/bin/env node
+const repl = require('repl');
+const { execSync } = require('child_process');
+const vm = require('vm');
 
-const bug = "neighbor";
-
-const pty = require('node-pty');
-
-const shell = pty.spawn('zsh', ['-i'], {
-  name: 'xterm-256color',
-  cols: process.stdout.columns || 80,
-  rows: process.stdout.rows || 24,
-  cwd: process.cwd(),
-  env: process.env
-});
-
-shell.on('data', (data) => {
-  process.stdout.write(data);
-});
-
-process.stdin.on('data', (data) => {
-  shell.write(data);
-});
-
-shell.on('exit', (code) => {
-  process.exit(code);
-});
-
-function main() {
-  console.log(bug);
+// Execute shell command and return output
+function $(cmd) {
+  try {
+    return execSync(cmd, { 
+      encoding: 'utf8', 
+      shell: '/bin/zsh',
+      stdio: ['pipe', 'pipe', 'pipe']
+    }).trim();
+  } catch (error) {
+    return error.stdout || error.message;
+  }
 }
 
-if (require.main === module) {
-  main();
+// Execute shell command and print output (like zsh does)
+function sh(cmd) {
+  try {
+    const result = execSync(cmd, { 
+      encoding: 'utf8', 
+      shell: '/bin/zsh',
+      stdio: ['inherit', 'pipe', 'pipe']
+    });
+    console.log(result);
+    return result.trim();
+  } catch (error) {
+    console.error(error.message);
+    return null;
+  }
 }
 
-module.exports = { bug, main };
+// Start custom REPL
+const r = repl.start({
+  prompt: '⚡ ',
+  eval: async (cmd, context, filename, callback) => {
+    cmd = cmd.trim();
+    
+    // Remove parentheses wrapping if present
+    if (cmd.startsWith('(') && cmd.endsWith(')')) {
+      cmd = cmd.slice(1, -1).trim();
+    }
+    
+    // Check if it looks like a shell command (no JS syntax)
+    const isShellCommand = !cmd.match(/^(const|let|var|function|class|if|for|while|return|=>|\{|\[)/) 
+                          && !cmd.includes('=')
+                          && !cmd.match(/\.\w+\(/);
+    
+    if (isShellCommand && !cmd.startsWith('$') && !cmd.startsWith('sh(')) {
+      // Execute as shell command
+      try {
+        const output = execSync(cmd, { 
+          encoding: 'utf8', 
+          shell: '/bin/zsh' 
+        });
+        console.log(output);
+        callback(null, undefined);
+      } catch (error) {
+        callback(null, undefined);
+      }
+    } else {
+      // Execute as JavaScript
+      try {
+        const result = vm.runInContext(cmd, context, { filename });
+        callback(null, result);
+      } catch (error) {
+        callback(error);
+      }
+    }
+  }
+});
+
+// Add utilities to REPL context
+r.context.$ = $;
+r.context.sh = sh;
+r.context.shell = execSync;
+
+console.log('🚀 Hybrid JS/Zsh REPL started!');
+console.log('   - Type shell commands directly: ls -la');
+console.log('   - Use $("cmd") to capture output: const files = $("ls")');
+console.log('   - Use sh("cmd") to print output: sh("cat file.txt")');
+console.log('   - Mix JS and shell: files.split("\\n").forEach(f => sh(`cat ${f}`))\n');

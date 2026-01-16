@@ -1,10 +1,10 @@
 {
-  "name": "gittaku",
+  "name": "ish",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "bin": {
-    "gittaku": "./index.js"
+    "ish": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,5 +12,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "@types/node": "^25.0.9"
+  }
 }
