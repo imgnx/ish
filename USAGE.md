@@ -1,6 +1,8 @@
-<!-- markdownlint-configure-file {$HOME/src/_g.md.styles.css} -->
+<!-- markdownlint-configure-file {$DINGLEHOPPER/prod/ish/.markdownlint.jsonc} -->
 
-# `ish` / ishScript
+# `ish` / ishScript #
+
+<link rel="stylesheet" href="$DINGLEHOPPER/prod/ish/md.styles.css">
 
 `zsh`/`node.js`/`[insert language here]` "summing" REPL.
 
@@ -8,16 +10,16 @@
 
 ## Zsh & JavaScript
 
-| Feature         | zsh                                  | js                                              | ish                          |
-| --------------- | ------------------------------------ | ----------------------------------------------- | ---------------------------- |
-| Input           | ✅ `read`                            | `await, on[event]...`                           | `read`                       |
-| Output          | ✅ `echo`                            | `console.log()`                                 | `echo`                       |
-| Client (Browse) | `curl`                               | ✅ `fetch`                                      | `fetch`                      |
-| Comment         | ✅ `# comment`                       | ✅ `// comment`, `/** comment`, `/* comment */` | `//`, `#`, `/## comment`     |
-| Peek            | ✅ `which`                           | ?                                               | `which`                      |
+| Feature         | zsh                                    | js                                              | ish                          |
+| --------------- | -------------------------------------- | ----------------------------------------------- | ---------------------------- |
+| Input           | ✅ `read`                              | `await, on[event]...`                           | `read`                       |
+| Output          | ✅ `echo`                              | `console.log()`                                 | `echo`                       |
+| Client (Browse) | `curl`                                 | ✅ `fetch`                                      | `fetch`                      |
+| Comment         | ✅ `# comment`                         | ✅ `// comment`, `/** comment`, `/* comment */` | `//`, `#`, `/## comment`     |
+| Peek            | ✅ `which`                             | ?                                               | `which`                      |
 | Loop            | `while IFS= read -r linel do ... done` | ✅ `.map`                                       | `Array.map, map(Array, _cb)` |
-| Switch          | `case ... [_]) ... ;; esac`          | ✅ `switch ([_]) { ... }`                       | `switch ([_]) { ... }`       |
-| Concatenate     | ✅ `cat`                             | `require("node:fs/promises").readSync()`        | `cat`                        |
+| Switch          | `case ... [_]) ... ;; esac`            | ✅ `switch ([_]) { ... }`                       | `switch ([_]) { ... }`       |
+| Concatenate     | ✅ `cat`                               | `require("node:fs/promises").readSync()`        | `cat`                        |
 
 ```ish
 

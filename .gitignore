@@ -1,5 +1,9 @@
-codex*
-.breadcrumb
-node_modules
-*~
-#*#
+**/codex*
+**/.breadcrumb
+**/node_modules
+**/*~
+**/#*#
+**/.*
+# !.markdown*.jsonc
+# !.markdown*.css
+assets

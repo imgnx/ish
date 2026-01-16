@@ -1,0 +1,15 @@
+{
+  // Disable rule MzD013 (line-length)
+  "MD013": false,
+  // Configure rule MD003 (heading style) to use "atx_closed" style (e.g., ### Heading ###)
+  "MD003": {
+    "style": "atx_closed"
+  },
+  // Configure rule MD007 (unordered list indentation) to use 4 spaces
+  "MD007": {
+    "indent": 4
+  },
+  // Disable rule "no-hard-tabs" by its alias
+  "no-hard-tabs": false,
+  "MD033": false
+}

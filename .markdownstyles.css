@@ -1,0 +1,46 @@
+:root {
+  --deem: #ff2000;
+  --grac: #ff6a00;
+  --xfer: #ffb500;
+  --pain: #ffff00;
+  --strs: #78f000;
+  --fear: #00e000;
+  --damn: #00f0b3;
+  --will: #0080ff;
+  --refg: #4000ff;
+  --gain: #ff00ff;
+  --peac: #ff00bf;
+  --fait: #ff0080;
+}
+
+*::selection {
+  color: var(--gain) !important;
+  background-color: #202020;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+blockquote,
+table,
+table *,
+ul,
+ul *,
+ol,
+ol *,
+nav,
+input,
+textarea {
+  font-family: 'Donald Sans', sans-serif;
+}
+
+kbd,
+code,
+pre {
+  font-family: 'BigBlueTermPlus Nerd Font Mono', '3270 Nerd Font Propo',
+    'DejaVu Sans', 'Monaspace Radon Var', monospace;
+}
