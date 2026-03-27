@@ -4,6 +4,6 @@
 **/*~
 **/#*#
 **/.*
-# !.markdown*.jsonc
+!.markdown*.jsonc
 # !.markdown*.css
 assets

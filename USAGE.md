@@ -1,6 +1,6 @@
 <!-- markdownlint-configure-file {$DINGLEHOPPER/prod/ish/.markdownlint.jsonc} -->
 
-# `ish` / ishScript #
+# `ish` / ishScript
 
 <link rel="stylesheet" href="$DINGLEHOPPER/prod/ish/md.styles.css">
 

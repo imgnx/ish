@@ -1,0 +1,29 @@
+{
+    "zsh": {
+        "read": true,
+        "echo": true,
+        "curl": false,
+        "#": true,
+        "which": true,
+        "while": false,
+        "case": false,
+        "cat": true
+    },
+    "js|ts": {
+        "await": false, // Replaced with custom script
+        "console": {
+            "log": false // Custom configuration for individual properties/methods, configuration is mandatory, explicit, and idempotent. It's all false unless you set it to `true`.
+        },
+        "fetch": true,
+        "//": true,
+        "[Array]": {
+            "map": true, // The method
+        },
+        "switch": true,
+        "require": false
+    },
+    "custom": {
+        "await": "zsh:&&", // Let it run in the background.
+        "map": "file:src/mapFn.ts" // Custom wrapper on `.map` that allows you to pass the array as an argument — TypeScript file with `ts-node` shebang — useless, but works as an example.
+    }
+}
